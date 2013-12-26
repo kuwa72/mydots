@@ -8,12 +8,15 @@ Usage
 
 * Backup your original dotfiles, If you want.
 * Install homesick
+* Install [neobundle](https://github.com/Shougo/neobundle.vim).
 * Clone [Clear-Code's zsh config](https://github.com/clear-code/zsh.d/).
 
 
 ```
   $ gem intall homesick
-  $ git clone https://github.com/clear-code/zsh.d.git
+  $ git clone https://github.com/clear-code/zsh.d.git ~/.zsh.d
+  $ mkdir -p ~/.vim/bundle
+  $ git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
   $ homesick clone kuwa72/mydots
   $ homesick symlink mydots
 ```
