@@ -31,10 +31,26 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'honza/vim-snippets'
+" HTML input support. like CSS Selector.
 NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 NeoBundle 'Shougo/vimfiler'
 NeoBundle '907th/vim-auto-save'
 NeoBundle "pangloss/vim-javascript"
+if has('gui_running')
+  NeoBundle 'fuenor/im_control.vim'
+endif
+" <Leader>[move] fast move method.
+NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'L9'
+" File open support
+NeoBundle 'FuzzyFinder'
+" Read/Write remote file
+NeoBundle 'netrw.vim'
+" reStructuredText plugin
+NeoBundle 'Rykka/riv.vim'
+
+NeoBundle 'fuenor/JpFormat.vim'
 
 filetype plugin indent on     " Required!
 "
@@ -111,6 +127,7 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 "------------------------------------
 " Basic
 "------------------------------------
+source $VIMRUNTIME/vimrc_example.vim
 let mapleader="," " <Leader>キー
 set scrolloff=5 " スクロール時の余白確保
 set textwidth=0 " 自動で折り返しをしない
@@ -180,6 +197,9 @@ autocmd BufNewFile,BufRead *.scss setlocal ft=scss
 autocmd BufRead,BufNewFile *.coffee setlocal ft=coffee
 autocmd BufNewFile,BufRead *.sass setfiletype sass
 
+autocmd Filetype rst setlocal ts=8 sts=0 sw=2 et fenc=utf-8
+autocmd Filetype scheme setlocal ts=8 sts=0 sw=2 et fenc=utf-8
+
 " for rails
 autocmd BufNewFile,BufRead app/*/*.erb setlocal ft=eruby fenc=utf-8
 autocmd BufNewFile,BufRead app/**/*.rb setlocal ft=ruby fenc=utf-8
@@ -221,4 +241,34 @@ noremap <S-Space> :bp!<CR>
 
 let g:auto_save = 1
 
+"ChangeLog
+let g:changelog_username = "KUWASHIMA Yuichiro"
 
+"Iinput method
+let IM_CtrlMode = 4
+if has('gui_running')
+  inoremap <silent> <C-j> <C-^><C-r>=IMState('FixMode')<CR>
+endif
+set cmdheight=2
+let IM_CtrlBufLocalMode = 1
+
+
+"Session auto save/restore
+augroup SessionAutocommands
+  autocmd!
+
+  autocmd VimEnter * nested call <SID>RestoreSessionWithConfirm()
+  autocmd VimLeave * execute 'SaveSession'
+augroup END
+
+command! RestoreSession :source ~/.vim/.session
+command! SaveSession    :mksession! ~/.vim/.session
+
+" Restore session with confirm
+function! s:RestoreSessionWithConfirm()
+  let msg = 'Do you want to restore previous session?'
+
+  if !argc() && confirm(msg, "&Yes\n&No", 1, 'Question') == 1
+    execute 'RestoreSession'
+  endif
+endfunction
