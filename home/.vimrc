@@ -52,6 +52,11 @@ NeoBundle 'Rykka/riv.vim'
 
 NeoBundle 'fuenor/JpFormat.vim'
 
+NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'shawncplus/php.vim'
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'snipMate'
+
 filetype plugin indent on     " Required!
 "
 " Brief help
@@ -235,6 +240,28 @@ noremap <Space> :bn!<CR>
 noremap <S-Space> :bp!<CR>
 :com! Kwbd let kwbd_bn= bufnr("%")|enew|exe "bdel ".kwbd_bn|unlet kwbd_bn " ウィンドウレイアウトを崩さないでバッファを閉じる
 
+
+""""""""""" プラグインごとの設定 """""""""""{{{
+" Unite起動時にインサートモードで開始
+let g:unite_enable_start_insert = 1
+
+" Uniteの各種ショートカット設定
+" バッファ一覧
+nnoremap <silent> ;ub :<C-u>Unite buffer<CR>
+" ファイル一覧
+nnoremap <silent> ;uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+" レジスタ一覧
+nnoremap <silent> ;ur :<C-u>Unite -buffer-name=register register<CR>
+" 最近使用したファイル一覧
+nnoremap <silent> ;um :<C-u>Unite file_mru<CR>
+" 全部乗せ
+nnoremap <silent> ;ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+
+" Ctrl +  o でタグアウトラインを表示
+nnoremap <C-o> :<C-u>Unite outline<CR>
+
+"}}}
+
 "------------------------------------
 " Autosave
 "------------------------------------
@@ -272,3 +299,31 @@ function! s:RestoreSessionWithConfirm()
     execute 'RestoreSession'
   endif
 endfunction
+
+
+""""" PHP用設定 """"""""
+" :makeでPHP構文チェック
+au FileType php setlocal makeprg=php\ -l\ %
+au FileType php setlocal errorformat=%m\ in\ %f\ on\ line\ %l
+
+" PHPの関数やクラスの折りたたみ(非常に重い）
+let php_folding = 0
+
+" 文字列の中のSQLをハイライト
+let php_sql_query = 1
+
+" Baselibメソッドのハイライト
+let php_baselib = 1
+
+" HTMLもハイライト
+let php_htmlInStrings = 1
+
+" <? を無効にする→ハイライト除外にする
+let php_noShortTags = 1
+
+" ] や ) の対応エラーをハイライト
+let php_parent_error_close = 1
+let php_parent_error_open = 1
+
+
+"}}}
