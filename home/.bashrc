@@ -41,6 +41,14 @@ shopt -s histappend
 shopt -s checkwinsize
 
 #
+# Use case-insensitive filename globbing
+shopt -s nocaseglob
+
+#
+# Don't use ^D to exit
+set -o ignoreeof
+
+#
 # History size & format
 #
 HISTCONTROL=ignoredups:ignorespace
