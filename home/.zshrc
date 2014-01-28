@@ -15,11 +15,12 @@ fi
 if [ `uname -o` = "Cygwin" ]; then
   alias lv='TERM=cygwin lv'
   export PAGER='TERM=cygwin lv'
+else
+  if which lv > /dev/null 2>&1; then
+    export PAGER=lv
+  fi
 fi
 
-if which lv > /dev/null 2>&1; then
-  export PAGER=lv
-fi
 
 [ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
 ###-begin-npm-completion-###

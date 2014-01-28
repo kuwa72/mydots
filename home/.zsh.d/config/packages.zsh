@@ -4,22 +4,36 @@
 source ~/.zsh.d/package.zsh
 
 # パッケージがインストールされていなければGitHubからcloneしてくる。
-package-install github hchbaw/auto-fu.zsh
+package-install github zsh-users/zsh-history-substring-search
+package-install github zsh-users/zsh-syntax-highlighting
+package-install github tarruda/zsh-autosuggestions
+package-install github zsh-users/zsh-completions
+
 # パッケージを読み込む。
-source $(package-directory hchbaw/auto-fu.zsh)/auto-fu.zsh
-# auto-fuを初期化する。
+source $(package-directory zsh-users/zsh-history-substring-search)/zsh-history-substring-search.zsh
+source $(package-directory zsh-users/zsh-syntax-highlighting)/zsh-syntax-highlighting.zsh
+source $(package-directory tarruda/zsh-autosuggestions)/autosuggestions.zsh
+fpath=($(package-directory zsh-users/zsh-completions)/src $fpath)
+
+# autosuggestionsを初期化する。
 zle-line-init() {
-  auto-fu-init
+  zle autosuggest-start
 }
 zle -N zle-line-init
-zle -N zle-keymap-select auto-fu-zle-keymap-select
 
-# auto-fuをカスタマイズする。
-## Enterを押したときは自動補完された部分を利用しない。
-afu+cancel-and-accept-line() {
-((afu_in_p == 1)) && { afu_in_p=0; BUFFER="$buffer_cur" }
-zle afu+accept-line
-}
-zle -N afu+cancel-and-accept-line
-bindkey -M afu "^M" afu+cancel-and-accept-line
+# bind UP and DOWN arrow keys
+zmodload zsh/terminfo
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
 
+# bind P and N for EMACS mode
+bindkey -M emacs '^P' history-substring-search-up
+bindkey -M emacs '^N' history-substring-search-down
+
+# bind k and j for VI mode
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
+bindkey '^T' autosuggest-toggle
+
+rm -f ~/.zcompdump; compinit
