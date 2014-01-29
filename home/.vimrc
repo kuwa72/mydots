@@ -53,7 +53,7 @@ NeoBundle 'Rykka/riv.vim'
 NeoBundle 'fuenor/JpFormat.vim'
 
 NeoBundle 'h1mesuke/unite-outline'
-NeoBundle 'shawncplus/php.vim'
+NeoBundle 'StanAngeloff/php.vim'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'snipMate'
 
