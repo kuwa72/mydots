@@ -30,6 +30,7 @@ NeoBundle 'Shougo/vimshell'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'honza/vim-snippets'
 " HTML input support. like CSS Selector.
 NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -55,7 +56,7 @@ NeoBundle 'fuenor/JpFormat.vim'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'StanAngeloff/php.vim'
 NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'snipMate'
+"NeoBundle 'snipMate'
 
 filetype plugin indent on     " Required!
 "
@@ -327,3 +328,21 @@ let php_parent_error_open = 1
 
 
 "}}}
+
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>"
+
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
