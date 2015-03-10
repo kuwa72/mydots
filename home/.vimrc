@@ -1,9 +1,14 @@
+ " Note: Skip initialization for vim-tiny or vim-small.
+  if !1 | finish | endif
+  
 if has('vim_starting')
-  set nocompatible               " Be iMproved
+  if &compatible
+    set nocompatible               " Be iMproved
+  endif
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -57,6 +62,20 @@ NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'StanAngeloff/php.vim'
 NeoBundle 'kien/ctrlp.vim'
 "NeoBundle 'snipMate'
+
+"colorschemes
+" solarized
+NeoBundle 'altercation/vim-colors-solarized'
+" mustang
+NeoBundle 'croaker/mustang-vim'
+" jellybeans
+NeoBundle 'nanotech/jellybeans.vim'
+" molokai
+NeoBundle 'tomasr/molokai'
+
+NeoBundle 'ujihisa/unite-colorscheme'
+
+call neobundle#end()
 
 filetype plugin indent on     " Required!
 "
