@@ -1,6 +1,12 @@
 source ~/.zsh.d/zshrc
 source ~/.zsh.d/config/packages.zsh
 
+#To use Homebrew's directories rather than ~/.rbenv add to your profile:
+export RBENV_ROOT=/usr/local/var/rbenv
+
+#To enable shims and autocompletion add to your profile:
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
 RBENV_DIR=$HOME/.rbenv/bin
 
 if [ -d $RBENV_DIR ]; then
@@ -11,8 +17,7 @@ if which rbenv >/dev/null 2>&1; then
   eval "$(rbenv init -)"
 fi
 
-
-if [ `uname -o` = "Cygwin" ]; then
+if [ "$OSTYPE" = "Cygwin" ]; then
   alias lv='TERM=cygwin lv'
   export PAGER='TERM=cygwin lv'
 else
