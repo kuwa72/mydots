@@ -31,4 +31,4 @@ bindkey -M vicmd 'j' history-substring-search-down
 
 bindkey '^T' autosuggest-toggle
 
-rm -f ~/.zcompdump; compinit
+rm -f ~/.zcompdump; compinit -u

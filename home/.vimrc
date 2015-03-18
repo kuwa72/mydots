@@ -186,12 +186,13 @@ set ttyfast " 高速ターミナル接続を行う
 "------------------------------------
 " Color
 "------------------------------------
-syntax enable " ハイライト on
-colorscheme morning " colorscheme
-
 if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
   set t_Co=256
 endif
+syntax enable " ハイライト on
+set background=dark
+colorscheme solarized " colorscheme
+
 
 "------------------------------------
 " Indentation

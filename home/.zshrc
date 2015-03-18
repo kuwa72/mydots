@@ -12,17 +12,22 @@ if which rbenv >/dev/null 2>&1; then
 fi
 
 
-if [ `uname -o` = "Cygwin" ]; then
-  alias lv='TERM=cygwin lv'
-  export PAGER='TERM=cygwin lv'
-else
-  if which lv > /dev/null 2>&1; then
-    export PAGER=lv
+if [ -x "$(which lv)" ]; then
+  if [ `uname -o` = "Cygwin" ]; then
+    alias lv='TERM=cygwin lv'
+    export PAGER='TERM=cygwin lv'
+  else
+    if which lv > /dev/null 2>&1; then
+      export PAGER=lv
+    fi
   fi
 fi
 
 
 [ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
+
+source ~/.aliases
+
 ###-begin-npm-completion-###
 #
 # npm command completion script
