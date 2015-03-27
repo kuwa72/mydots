@@ -191,7 +191,8 @@ if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gno
 endif
 syntax enable " ハイライト on
 set background=dark
-colorscheme solarized " colorscheme
+let g:solarized_termcolors=256
+colorscheme molokai " colorscheme
 
 
 "------------------------------------

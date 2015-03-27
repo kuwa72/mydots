@@ -1,6 +1,8 @@
 source ~/.zsh.d/zshrc
 source ~/.zsh.d/config/packages.zsh
 
+export LANG=ja_JP.UTF-8
+
 RBENV_DIR=$HOME/.rbenv/bin
 
 if [ -d $RBENV_DIR ]; then
@@ -13,7 +15,7 @@ fi
 
 
 if [ -x "$(which lv)" ]; then
-  if [ `uname -o` = "Cygwin" ]; then
+  if [ `uname -s` = "CYGWIN_NT-5.1" ]; then
     alias lv='TERM=cygwin lv'
     export PAGER='TERM=cygwin lv'
   else

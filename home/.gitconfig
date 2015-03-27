@@ -30,10 +30,16 @@
   st = status
   unpushed = log HEAD..origin
   g = grep --break --heading --line-number
+  co = checkout
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  lga = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  logg = log --stat --pretty=format:'%Cblue%h %Cgreen%ar %Cred%an %Creset%s %Cred%d%Creset'
 [user]
-  email = ykuwashima@gmail.com
+  email = 
   name = KUWASHIMA Yuichiro
 [github]
   user = kuwa72
 [grep]
   lineNumber = true
+[http]
+	sslVerify = false
