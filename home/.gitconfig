@@ -81,4 +81,6 @@
 [github]
 	user = kuwa72
 [grep]
-	lineNumber = true
+  lineNumber = true
+[http]
+	sslVerify = false

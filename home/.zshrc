@@ -6,6 +6,7 @@ export RBENV_ROOT=/usr/local/var/rbenv
 
 #To enable shims and autocompletion add to your profile:
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+export LANG=ja_JP.UTF-8
 
 RBENV_DIR=$HOME/.rbenv/bin
 
@@ -17,17 +18,22 @@ if which rbenv >/dev/null 2>&1; then
   eval "$(rbenv init -)"
 fi
 
-if [ "$OSTYPE" = "Cygwin" ]; then
-  alias lv='TERM=cygwin lv'
-  export PAGER='TERM=cygwin lv'
-else
-  if which lv > /dev/null 2>&1; then
-    export PAGER=lv
+if [ -x "$(which lv)" ]; then
+  if [ `uname -s` = "CYGWIN_NT-5.1" ]; then
+    alias lv='TERM=cygwin lv'
+    export PAGER='TERM=cygwin lv'
+  else
+    if which lv > /dev/null 2>&1; then
+      export PAGER=lv
+    fi
   fi
 fi
 
 
 [ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
+
+source ~/.aliases
+
 ###-begin-npm-completion-###
 #
 # npm command completion script
