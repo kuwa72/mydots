@@ -75,6 +75,21 @@ NeoBundle 'tomasr/molokai'
 
 NeoBundle 'ujihisa/unite-colorscheme'
 
+NeoBundle 'bronson/vim-trailing-whitespace'
+
+NeoBundle 'rking/ag.vim'
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'junegunn/vim-easy-align'
+
+" " -- Clojure
+NeoBundle 'kien/rainbow_parentheses.vim'
+NeoBundle 'guns/vim-clojure-static'
+NeoBundle 'guns/vim-sexp'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-fireplace'
+
+
 call neobundle#end()
 
 filetype plugin indent on     " Required!
@@ -266,6 +281,12 @@ noremap <S-Space> :bp!<CR>
 """"""""""" プラグインごとの設定 """""""""""{{{
 " Unite起動時にインサートモードで開始
 let g:unite_enable_start_insert = 1
+let g:unite_source_history_yank_enable = 1
+try
+  let g:unite_source_rec_async_command='ag --nocolor --nogroup -g ""'
+  call unite#filters#matcher_default#use(['matcher_fuzzy'])
+catch
+endtry
 
 " Uniteの各種ショートカット設定
 " バッファ一覧
@@ -281,6 +302,11 @@ nnoremap <silent> ;ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mr
 
 " Ctrl +  o でタグアウトラインを表示
 nnoremap <C-o> :<C-u>Unite outline<CR>
+
+" search a file in the filetree
+nnoremap <silent> ;ua :split<cr> :<C-u>Unite -start-insert file_rec/async<cr>
+" reset not it is <C-l> normally
+:nnoremap <silent> ;ur <Plug>(unite_restart)
 
 "}}}
 
@@ -369,3 +395,36 @@ if has('conceal')
 endif
 
 let g:sparkupNextMapping = '<c-_>'
+
+"-- type ° to search the word in all files in the current dir
+nmap + :Ag <c-r>=expand("<cword>")<cr><cr>
+nnoremap ;/ :Ag
+
+" Easy align interactive
+vnoremap <silent> <Enter> :EasyAlign<cr>
+
+" Clojure
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesActivate
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadRound
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadSquare
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadBraces
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl setlocal iskeyword+=?,-,*,!,+,/,=,<,>,.,:
+" -- Rainbow parenthesis options
+let g:rbpt_colorpairs = [
+    \ ['darkyellow',  'RoyalBlue3'],
+    \ ['darkgreen',   'SeaGreen3'],
+    \ ['darkcyan',    'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['DarkMagenta', 'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkyellow',  'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['DarkMagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkyellow',  'DarkOrchid3'],
+    \ ['darkred',     'firebrick3'],
+    \ ]
