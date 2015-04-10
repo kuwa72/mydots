@@ -1,6 +1,11 @@
 source ~/.zsh.d/zshrc
 source ~/.zsh.d/config/packages.zsh
 
+#To use Homebrew's directories rather than ~/.rbenv add to your profile:
+export RBENV_ROOT=/usr/local/var/rbenv
+
+#To enable shims and autocompletion add to your profile:
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 export LANG=ja_JP.UTF-8
 
 RBENV_DIR=$HOME/.rbenv/bin
@@ -12,7 +17,6 @@ fi
 if which rbenv >/dev/null 2>&1; then
   eval "$(rbenv init -)"
 fi
-
 
 if [ -x "$(which lv)" ]; then
   if [ `uname -s` = "CYGWIN_NT-5.1" ]; then
