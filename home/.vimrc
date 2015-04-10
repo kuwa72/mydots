@@ -210,7 +210,7 @@ autocmd FileType * set formatoptions-=ro " 改行時にコメントしない
 " softtabstop = sts タブキーを押したときに挿入される空白の量
 " shiftwidth = sw 自動インデントの各段階に使われる空白の数
 
-autocmd FileType php setlocal ts=2 sts=2 sw=2 noexpandtab
+autocmd FileType php setlocal ts=4 sts=0 sw=4 expandtab
 autocmd FileType c setlocal ts=4 sw=4 noexpandtab cindent
 autocmd FileType java setlocal ts=4 sts=4 sw=4 et
 autocmd FileType sh setlocal ts=2 sts=2 sw=2 et
@@ -367,3 +367,5 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
+
+let g:sparkupNextMapping = '<c-_>'
