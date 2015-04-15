@@ -89,6 +89,8 @@ NeoBundle 'guns/vim-sexp'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-fireplace'
 
+NeoBundle 'Align'
+NeoBundle 'SQLUtilities'
 
 call neobundle#end()
 
