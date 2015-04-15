@@ -30,7 +30,15 @@ if [ -x "$(which lv)" ]; then
 fi
 
 
-[ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
+
+if which brew >/dev/null 2>&1; then
+  if brew info nvm >/dev/null 2>&1; then
+    export NVM_DIR=~/.nvm
+    source $(brew --prefix nvm)/nvm.sh
+  fi
+else
+  [ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
+fi
 
 source ~/.aliases
 
