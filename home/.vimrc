@@ -92,6 +92,9 @@ NeoBundle 'tpope/vim-fireplace'
 NeoBundle 'Align'
 NeoBundle 'SQLUtilities'
 
+NeoBundle 'junegunn/vim-emoji'
+NeoBundle 'DirDiff.vim'
+
 call neobundle#end()
 
 filetype plugin indent on     " Required!
@@ -227,6 +230,7 @@ autocmd FileType * set formatoptions-=ro " 改行時にコメントしない
 " softtabstop = sts タブキーを押したときに挿入される空白の量
 " shiftwidth = sw 自動インデントの各段階に使われる空白の数
 
+autocmd FileType smarty setlocal ts=4 sts=0 sw=4 expandtab
 autocmd FileType php setlocal ts=4 sts=0 sw=4 expandtab
 autocmd FileType c setlocal ts=4 sw=4 noexpandtab cindent
 autocmd FileType java setlocal ts=4 sts=4 sw=4 et
@@ -430,3 +434,10 @@ let g:rbpt_colorpairs = [
     \ ['darkyellow',  'DarkOrchid3'],
     \ ['darkred',     'firebrick3'],
     \ ]
+
+silent! if emoji#available()
+	let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
+	let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
+	let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
+	let g:gitgutter_sign_modified_removed = emoji#for('collision')
+endif

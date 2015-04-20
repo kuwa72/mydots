@@ -1,9 +1,6 @@
 source ~/.zsh.d/zshrc
 source ~/.zsh.d/config/packages.zsh
 
-#To use Homebrew's directories rather than ~/.rbenv add to your profile:
-export RBENV_ROOT=/usr/local/var/rbenv
-
 #To enable shims and autocompletion add to your profile:
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 export LANG=ja_JP.UTF-8
@@ -12,6 +9,12 @@ RBENV_DIR=$HOME/.rbenv/bin
 
 if [ -d $RBENV_DIR ]; then
   export PATH=$RBENV_DIR:$PATH
+fi
+
+LINUXBREW_DIR=$HOME/.linuxbrew/bin
+
+if [ -d $LINUXBREW_DIR ]; then
+  export PATH=$LINUXBREW_DIR:$PATH
 fi
 
 if which rbenv >/dev/null 2>&1; then
@@ -29,9 +32,10 @@ if [ -x "$(which lv)" ]; then
   fi
 fi
 
+if [ 'Darwin' = $(uname -s) ] && which brew >/dev/null 2>&1; then
+  #To use Homebrew's directories rather than ~/.rbenv add to your profile:
+  export RBENV_ROOT=/usr/local/var/rbenv
 
-
-if which brew >/dev/null 2>&1; then
   if brew info nvm >/dev/null 2>&1; then
     export NVM_DIR=~/.nvm
     source $(brew --prefix nvm)/nvm.sh
