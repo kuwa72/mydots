@@ -14,6 +14,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'Shougo/neobundle-vim-recipes'
+NeoBundle 'Shougo/neomru.vim'
 
 " Recommended to install
 NeoBundle 'Shougo/vimproc', {
@@ -289,10 +290,16 @@ noremap <S-Space> :bp!<CR>
 let g:unite_enable_start_insert = 1
 let g:unite_source_history_yank_enable = 1
 try
-  let g:unite_source_rec_async_command='ag --nocolor --nogroup -g ""'
+  let g:unite_source_rec_async_command='ag --nocolor --nogroup -g --silent""'
   call unite#filters#matcher_default#use(['matcher_fuzzy'])
 catch
 endtry
+
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+endif
 
 " Uniteの各種ショートカット設定
 " バッファ一覧
@@ -359,9 +366,10 @@ endfunction
 " :makeでPHP構文チェック
 au FileType php setlocal makeprg=php\ -l\ %
 au FileType php setlocal errorformat=%m\ in\ %f\ on\ line\ %l
+au FileType php setlocal foldmethod=syntax
 
 " PHPの関数やクラスの折りたたみ(非常に重い）
-let php_folding = 0
+let php_folding = 2
 
 " 文字列の中のSQLをハイライト
 let php_sql_query = 1
