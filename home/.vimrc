@@ -14,6 +14,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'Shougo/neobundle-vim-recipes'
+NeoBundle 'Shougo/neomru.vim'
 
 " Recommended to install
 NeoBundle 'Shougo/vimproc', {
@@ -74,6 +75,26 @@ NeoBundle 'nanotech/jellybeans.vim'
 NeoBundle 'tomasr/molokai'
 
 NeoBundle 'ujihisa/unite-colorscheme'
+
+NeoBundle 'bronson/vim-trailing-whitespace'
+
+NeoBundle 'rking/ag.vim'
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'junegunn/vim-easy-align'
+
+" " -- Clojure
+NeoBundle 'kien/rainbow_parentheses.vim'
+NeoBundle 'guns/vim-clojure-static'
+NeoBundle 'guns/vim-sexp'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-fireplace'
+
+NeoBundle 'Align'
+NeoBundle 'SQLUtilities'
+
+NeoBundle 'junegunn/vim-emoji'
+NeoBundle 'DirDiff.vim'
 
 call neobundle#end()
 
@@ -186,13 +207,14 @@ set ttyfast " 高速ターミナル接続を行う
 "------------------------------------
 " Color
 "------------------------------------
-syntax enable " ハイライト on
-"let g:solarized_termcolors=256
-colorscheme solarized " colorscheme
-
 if $TERM == "xterm-256color" || $TERM == "screen-256color" || $COLORTERM == "gnome-terminal"
   set t_Co=256
 endif
+syntax enable " ハイライト on
+set background=dark
+let g:solarized_termcolors=256
+colorscheme molokai " colorscheme
+
 
 "------------------------------------
 " Indentation
@@ -209,7 +231,8 @@ autocmd FileType * set formatoptions-=ro " 改行時にコメントしない
 " softtabstop = sts タブキーを押したときに挿入される空白の量
 " shiftwidth = sw 自動インデントの各段階に使われる空白の数
 
-autocmd FileType php setlocal ts=2 sts=2 sw=2 noexpandtab
+autocmd FileType smarty setlocal ts=4 sts=0 sw=4 expandtab
+autocmd FileType php setlocal ts=4 sts=0 sw=4 expandtab
 autocmd FileType c setlocal ts=4 sw=4 noexpandtab cindent
 autocmd FileType java setlocal ts=4 sts=4 sw=4 et
 autocmd FileType sh setlocal ts=2 sts=2 sw=2 et
@@ -265,6 +288,18 @@ noremap <S-Space> :bp!<CR>
 """"""""""" プラグインごとの設定 """""""""""{{{
 " Unite起動時にインサートモードで開始
 let g:unite_enable_start_insert = 1
+let g:unite_source_history_yank_enable = 1
+try
+  let g:unite_source_rec_async_command='ag --nocolor --nogroup -g --silent""'
+  call unite#filters#matcher_default#use(['matcher_fuzzy'])
+catch
+endtry
+
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+endif
 
 " Uniteの各種ショートカット設定
 " バッファ一覧
@@ -280,6 +315,11 @@ nnoremap <silent> ;ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mr
 
 " Ctrl +  o でタグアウトラインを表示
 nnoremap <C-o> :<C-u>Unite outline<CR>
+
+" search a file in the filetree
+nnoremap <silent> ;ua :split<cr> :<C-u>Unite -start-insert file_rec/async<cr>
+" reset not it is <C-l> normally
+:nnoremap <silent> ;ur <Plug>(unite_restart)
 
 "}}}
 
@@ -326,9 +366,10 @@ endfunction
 " :makeでPHP構文チェック
 au FileType php setlocal makeprg=php\ -l\ %
 au FileType php setlocal errorformat=%m\ in\ %f\ on\ line\ %l
+au FileType php setlocal foldmethod=syntax
 
 " PHPの関数やクラスの折りたたみ(非常に重い）
-let php_folding = 0
+let php_folding = 2
 
 " 文字列の中のSQLをハイライト
 let php_sql_query = 1
@@ -365,4 +406,46 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 " For snippet_complete marker.
 if has('conceal')
   set conceallevel=2 concealcursor=i
+endif
+
+let g:sparkupNextMapping = '<c-_>'
+
+"-- type ° to search the word in all files in the current dir
+nmap + :Ag <c-r>=expand("<cword>")<cr><cr>
+nnoremap ;/ :Ag
+
+" Easy align interactive
+vnoremap <silent> <Enter> :EasyAlign<cr>
+
+" Clojure
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesActivate
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadRound
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadSquare
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl RainbowParenthesesLoadBraces
+autocmd BufEnter *.cljs,*.clj,*.cljs.hl setlocal iskeyword+=?,-,*,!,+,/,=,<,>,.,:
+" -- Rainbow parenthesis options
+let g:rbpt_colorpairs = [
+    \ ['darkyellow',  'RoyalBlue3'],
+    \ ['darkgreen',   'SeaGreen3'],
+    \ ['darkcyan',    'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['DarkMagenta', 'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkyellow',  'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['DarkMagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkyellow',  'DarkOrchid3'],
+    \ ['darkred',     'firebrick3'],
+    \ ]
+
+silent! if emoji#available()
+	let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
+	let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
+	let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
+	let g:gitgutter_sign_modified_removed = emoji#for('collision')
 endif

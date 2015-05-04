@@ -1,28 +1,51 @@
 source ~/.zsh.d/zshrc
 source ~/.zsh.d/config/packages.zsh
 
+#To enable shims and autocompletion add to your profile:
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+export LANG=ja_JP.UTF-8
+
 RBENV_DIR=$HOME/.rbenv/bin
 
 if [ -d $RBENV_DIR ]; then
   export PATH=$RBENV_DIR:$PATH
 fi
 
+LINUXBREW_DIR=$HOME/.linuxbrew/bin
+
+if [ -d $LINUXBREW_DIR ]; then
+  export PATH=$LINUXBREW_DIR:$PATH
+fi
+
 if which rbenv >/dev/null 2>&1; then
   eval "$(rbenv init -)"
 fi
 
-
-if [ `uname -o` = "Cygwin" ]; then
-  alias lv='TERM=cygwin lv'
-  export PAGER='TERM=cygwin lv'
-else
-  if which lv > /dev/null 2>&1; then
-    export PAGER=lv
+if [ -x "$(which lv)" ]; then
+  if [ `uname -s` = "CYGWIN_NT-5.1" ]; then
+    alias lv='TERM=cygwin lv'
+    export PAGER='TERM=cygwin lv'
+  else
+    if which lv > /dev/null 2>&1; then
+      export PAGER=lv
+    fi
   fi
 fi
 
+if [ 'Darwin' = $(uname -s) ] && which brew >/dev/null 2>&1; then
+  #To use Homebrew's directories rather than ~/.rbenv add to your profile:
+  export RBENV_ROOT=/usr/local/var/rbenv
 
-[ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
+  if brew info nvm >/dev/null 2>&1; then
+    export NVM_DIR=~/.nvm
+    source $(brew --prefix nvm)/nvm.sh
+  fi
+else
+  [ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM
+fi
+
+source ~/.aliases
+
 ###-begin-npm-completion-###
 #
 # npm command completion script
