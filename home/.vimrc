@@ -368,10 +368,10 @@ endfunction
 " :makeでPHP構文チェック
 au FileType php setlocal makeprg=php\ -l\ %
 au FileType php setlocal errorformat=%m\ in\ %f\ on\ line\ %l
-au FileType php setlocal foldmethod=syntax
+au FileType php setlocal foldmethod=manual
 
 " PHPの関数やクラスの折りたたみ(非常に重い）
-let php_folding = 2
+let php_folding = 1
 
 " 文字列の中のSQLをハイライト
 let php_sql_query = 1
