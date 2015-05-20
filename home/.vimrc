@@ -96,6 +96,8 @@ NeoBundle 'SQLUtilities'
 NeoBundle 'junegunn/vim-emoji'
 NeoBundle 'DirDiff.vim'
 
+NeoBundle 'supermomonga/shaberu.vim'
+
 call neobundle#end()
 
 filetype plugin indent on     " Required!
