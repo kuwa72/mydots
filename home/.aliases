@@ -21,9 +21,10 @@ alias gch="git cherry -v"
 alias glgg="git logg"
 alias glg="git logg | head"
 alias glo="git log --no-merges --date=short --pretty='format:%C(yellow)%h %C(green)%cd %C(blue)%an%C(red)%d %C(reset)%s'"
+alias glm="git log --date=short --pretty='format:%C(yellow)%h %C(green)%cd %C(blue)%an%C(red)%d %C(reset)%s'"
 
 function gcam() {
-  git commit -m "$*"
+  git commit -am "$*"
 }
 
 function gcm() {
