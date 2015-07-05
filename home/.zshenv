@@ -1,5 +1,4 @@
-source ~/.zsh.d/zshenv
-
-if which brew && which php; then
-	export PATH="$(brew --prefix php56)/bin:$PATH"
-fi
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done

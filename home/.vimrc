@@ -89,12 +89,21 @@ NeoBundle 'guns/vim-clojure-static'
 NeoBundle 'guns/vim-sexp'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-fireplace'
+NeoBundle 'tpope/vim-classpath'
+NeoBundle 'tpope/vim-salve'
+NeoBundle 'guns/vim-clojure-highlight'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'venantius/vim-eastwood'
+NeoBundle 'scrooloose/syntastic'
 
 NeoBundle 'Align'
 NeoBundle 'SQLUtilities'
 
 NeoBundle 'junegunn/vim-emoji'
 NeoBundle 'DirDiff.vim'
+
+NeoBundle 'supermomonga/shaberu.vim'
 
 call neobundle#end()
 
@@ -366,10 +375,10 @@ endfunction
 " :makeでPHP構文チェック
 au FileType php setlocal makeprg=php\ -l\ %
 au FileType php setlocal errorformat=%m\ in\ %f\ on\ line\ %l
-au FileType php setlocal foldmethod=syntax
+au FileType php setlocal foldmethod=manual
 
 " PHPの関数やクラスの折りたたみ(非常に重い）
-let php_folding = 2
+let php_folding = 1
 
 " 文字列の中のSQLをハイライト
 let php_sql_query = 1
@@ -442,6 +451,7 @@ let g:rbpt_colorpairs = [
     \ ['darkyellow',  'DarkOrchid3'],
     \ ['darkred',     'firebrick3'],
     \ ]
+let g:sexp_enable_insert_mode_mappings = 0
 
 silent! if emoji#available()
 	let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
