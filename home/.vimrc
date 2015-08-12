@@ -47,11 +47,12 @@ if has('gui_running')
   NeoBundle 'fuenor/im_control.vim'
 endif
 " <Leader>[move] fast move method.
-NeoBundle 'Lokaltog/vim-easymotion'
+"NeoBundle 'Lokaltog/vim-easymotion'
+" Git command wrapper
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'L9'
 " File open support
-NeoBundle 'FuzzyFinder'
+" NeoBundle 'FuzzyFinder'
 " Read/Write remote file
 NeoBundle 'netrw.vim'
 " reStructuredText plugin
@@ -80,7 +81,6 @@ NeoBundle 'bronson/vim-trailing-whitespace'
 
 NeoBundle 'rking/ag.vim'
 NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'junegunn/vim-easy-align'
 
 " " -- Clojure
@@ -183,7 +183,7 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 " Basic
 "------------------------------------
 source $VIMRUNTIME/vimrc_example.vim
-let mapleader="," " <Leader>キー
+let mapleader="\<Space>" " <Leader>キー
 set scrolloff=5 " スクロール時の余白確保
 set textwidth=0 " 自動で折り返しをしない
 set autoread " 自動読み直し
@@ -289,8 +289,8 @@ set history=1000 " コマンド・検索パターン履歴数
 "------------------------------------
 " Buffer
 "------------------------------------
-noremap <Space> :bn!<CR>
-noremap <S-Space> :bp!<CR>
+noremap <Leader>n :bn!<CR>
+noremap <Leader>p :bp!<CR>
 :com! Kwbd let kwbd_bn= bufnr("%")|enew|exe "bdel ".kwbd_bn|unlet kwbd_bn " ウィンドウレイアウトを崩さないでバッファを閉じる
 
 
