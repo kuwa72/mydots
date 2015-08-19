@@ -451,3 +451,4 @@ silent! if emoji#available()
 	let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
 	let g:gitgutter_sign_modified_removed = emoji#for('collision')
 endif
+set ambiwidth=double
