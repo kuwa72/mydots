@@ -1,126 +1,109 @@
  " Note: Skip initialization for vim-tiny or vim-small.
-  if !1 | finish | endif
-  
-if has('vim_starting')
-  if &compatible
-    set nocompatible               " Be iMproved
-  endif
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+if !1 | finish | endif
+
+"dein Scripts-----------------------------
+if &compatible
+	set nocompatible               " Be iMproved
 endif
 
-call neobundle#begin(expand('~/.vim/bundle/'))
+" Required:
+set runtimepath^=.dein/repos/github.com/Shougo/dein.vim
 
-" Let NeoBundle manage NeoBundle
-NeoBundleFetch 'Shougo/neobundle.vim'
+" Required:
+call dein#begin(expand('.dein'))
 
-NeoBundle 'Shougo/neobundle-vim-recipes'
-NeoBundle 'Shougo/neomru.vim'
+" Let dein manage dein
+" Required:
+call dein#add('Shougo/dein.vim')
 
-" Recommended to install
-NeoBundle 'Shougo/vimproc', {
- \ 'build' : {
- \     'windows' : 'make -f make_mingw32.mak',
- \     'cygwin' : 'make -f make_cygwin.mak',
- \     'mac' : 'make -f make_mac.mak',
- \     'unix' : 'make -f make_unix.mak',
- \    },
- \ }
+call dein#add('Shougo/neomru.vim')
 
-" My Bundles here:
-" Refer to |:NeoBundle-examples|.
-"
-" Note: You don't set neobundle setting in .gvimrc!
+call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 
-" ...
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'honza/vim-snippets'
+call dein#add('Shougo/vimshell')
+call dein#add('Shougo/unite.vim')
+call dein#add('Shougo/neocomplcache')
+call dein#add('Shougo/neosnippet')
+call dein#add('Shougo/neosnippet-snippets')
+call dein#add('honza/vim-snippets')
 " HTML input support. like CSS Selector.
-NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-NeoBundle 'Shougo/vimfiler'
-NeoBundle '907th/vim-auto-save'
-NeoBundle "pangloss/vim-javascript"
+call dein#add('rstacruz/sparkup', {'rtp': 'vim/'})
+call dein#add('Shougo/vimfiler')
+call dein#add('907th/vim-auto-save')
+call dein#add('pangloss/vim-javascript')
 if has('gui_running')
-  NeoBundle 'fuenor/im_control.vim'
+  call dein#add('fuenor/im_control.vim')
 endif
 " <Leader>[move] fast move method.
-"NeoBundle 'Lokaltog/vim-easymotion'
+"call dein#add('Lokaltog/vim-easymotion')
 " Git command wrapper
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'L9'
+call dein#add('tpope/vim-fugitive')
+call dein#add('L9')
 " File open support
-" NeoBundle 'FuzzyFinder'
+" call dein#add('FuzzyFinder')
 " Read/Write remote file
-NeoBundle 'netrw.vim'
+call dein#add('netrw.vim')
 " reStructuredText plugin
-NeoBundle 'Rykka/riv.vim'
+call dein#add('Rykka/riv.vim')
 
-NeoBundle 'fuenor/JpFormat.vim'
+call dein#add('fuenor/JpFormat.vim')
 
-NeoBundle 'h1mesuke/unite-outline'
-NeoBundle 'StanAngeloff/php.vim'
-NeoBundle 'kien/ctrlp.vim'
-"NeoBundle 'snipMate'
+call dein#add('h1mesuke/unite-outline')
+call dein#add('StanAngeloff/php.vim')
+call dein#add('kien/ctrlp.vim')
+"call dein#add('snipMate')
 
 "colorschemes
 " solarized
-NeoBundle 'altercation/vim-colors-solarized'
+call dein#add('altercation/vim-colors-solarized')
 " mustang
-NeoBundle 'croaker/mustang-vim'
+call dein#add('croaker/mustang-vim')
 " jellybeans
-NeoBundle 'nanotech/jellybeans.vim'
+call dein#add('nanotech/jellybeans.vim')
 " molokai
-NeoBundle 'tomasr/molokai'
+call dein#add('tomasr/molokai')
 
-NeoBundle 'ujihisa/unite-colorscheme'
+call dein#add('ujihisa/unite-colorscheme')
 
-NeoBundle 'bronson/vim-trailing-whitespace'
+call dein#add('bronson/vim-trailing-whitespace')
 
-NeoBundle 'rking/ag.vim'
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'junegunn/vim-easy-align'
+call dein#add('rking/ag.vim')
+call dein#add('airblade/vim-gitgutter')
+call dein#add('junegunn/vim-easy-align')
 
 " " -- Clojure
-NeoBundle 'kien/rainbow_parentheses.vim'
-NeoBundle 'guns/vim-clojure-static'
-NeoBundle 'guns/vim-sexp'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-fireplace'
-NeoBundle 'tpope/vim-classpath'
-NeoBundle 'tpope/vim-salve'
-NeoBundle 'guns/vim-clojure-highlight'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'venantius/vim-eastwood'
-NeoBundle 'scrooloose/syntastic'
+call dein#add('kien/rainbow_parentheses.vim')
+call dein#add('guns/vim-clojure-static')
+call dein#add('guns/vim-sexp')
+call dein#add('tpope/vim-repeat')
+call dein#add('tpope/vim-fireplace')
+call dein#add('tpope/vim-classpath')
+call dein#add('tpope/vim-salve')
+call dein#add('guns/vim-clojure-highlight')
+call dein#add('scrooloose/nerdtree')
+call dein#add('bling/vim-airline')
+call dein#add('venantius/vim-eastwood')
+call dein#add('scrooloose/syntastic')
 
-NeoBundle 'Align'
-NeoBundle 'SQLUtilities'
+call dein#add('Align')
+call dein#add('SQLUtilities')
 
-NeoBundle 'junegunn/vim-emoji'
-NeoBundle 'DirDiff.vim'
+call dein#add('junegunn/vim-emoji')
+call dein#add('DirDiff.vim')
 
-NeoBundle 'supermomonga/shaberu.vim'
+call dein#add('supermomonga/shaberu.vim')
 
-call neobundle#end()
+" Required:
+call dein#end()
 
-filetype plugin indent on     " Required!
-"
-" Brief help
-" :NeoBundleList          - list configured bundles
-" :NeoBundleInstall(!)    - install(update) bundles
-" :NeoBundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+" Required:
+filetype plugin indent on
 
-" Installation check.
-NeoBundleCheck
+" If you want to install not installed plugins on startup.
+"if dein#check_install()
+"  call dein#install()
+"endif
 
-if !has('vim_starting')
-  " Call on_source hook when reloading .vimrc.
-  call neobundle#call_hook('on_source')
-endif
 
 if &encoding !=# 'utf-8'
   set encoding=japan
