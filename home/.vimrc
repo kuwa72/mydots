@@ -41,7 +41,7 @@ NeoBundle 'honza/vim-snippets'
 " HTML input support. like CSS Selector.
 NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 NeoBundle 'Shougo/vimfiler'
-NeoBundle '907th/vim-auto-save'
+" NeoBundle '907th/vim-auto-save'
 NeoBundle "pangloss/vim-javascript"
 if has('gui_running')
   NeoBundle 'fuenor/im_control.vim'
@@ -104,6 +104,20 @@ NeoBundle 'junegunn/vim-emoji'
 NeoBundle 'DirDiff.vim'
 
 NeoBundle 'supermomonga/shaberu.vim'
+
+NeoBundle 'chazy/cscope_maps'
+
+NeoBundle 'udalov/kotlin-vim'
+
+NeoBundle 'nanotech/jellybeans.vim'
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'vim-scripts/twilight'
+NeoBundle 'jonathanfilip/vim-lucius'
+NeoBundle 'jpo/vim-railscasts-theme'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'vim-scripts/Wombat'
+NeoBundle 'tomasr/molokai'
+NeoBundle 'vim-scripts/rdark'
 
 call neobundle#end()
 
@@ -196,6 +210,7 @@ set whichwrap=b,s,h,l,<,>,[,] " カーソルを行頭、行末で止まらない
 set showcmd " コマンドをステータス行に表示
 set showmode " 現在のモードを表示
 set modelines=0 " モードラインは無効
+set ambiwidth=double "🍣
 
 "------------------------------------
 " Show
@@ -336,7 +351,7 @@ nnoremap <silent> ;ua :split<cr> :<C-u>Unite -start-insert file_rec/async<cr>
 " Autosave
 "------------------------------------
 
-let g:auto_save = 1
+let g:auto_save = 0
 
 "ChangeLog
 let g:changelog_username = "KUWASHIMA Yuichiro"
@@ -459,3 +474,6 @@ silent! if emoji#available()
 	let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
 	let g:gitgutter_sign_modified_removed = emoji#for('collision')
 endif
+
+nmap <C-h> :Doc <c-r>=expand("<cword>")<cr><cr>
+nmap <C-e> :Eval<cr>
