@@ -57,3 +57,12 @@ function gstv() {
 }
 
 [ -f ~/.aliases_local ] && source ~/.aliases_local
+
+alias たのしー！=grep
+alias たーのしー！=find
+alias すごーい！=sort
+alias すっごーい！=uniq
+alias うわー！=awk
+alias わーい！=sed
+alias なにこれなにこれ！=xargs
+alias おもしろーい！=seq

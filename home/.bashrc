@@ -182,3 +182,5 @@ esac
 PATH=$PATH:$HOME/.egison/bin
 PATH=$PATH:/Library/Egison/bin
 PATH=~/.composer/vendor/bin:$PATH
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

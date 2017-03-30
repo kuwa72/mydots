@@ -54,6 +54,10 @@ call dein#add('StanAngeloff/php.vim')
 call dein#add('kien/ctrlp.vim')
 "call dein#add('snipMate')
 
+call dein#add('iakio/smarty3')
+let g:smarty_left_delimiter = '<!--{'
+let g:smarty_right_delimiter = '}-->'
+
 "colorschemes
 " solarized
 call dein#add('altercation/vim-colors-solarized')
@@ -108,6 +112,9 @@ call dein#add('altercation/vim-colors-solarized')
 call dein#add('vim-scripts/Wombat')
 call dein#add('tomasr/molokai')
 call dein#add('vim-scripts/rdark')
+
+call dein#add('leafgarland/typescript-vim')
+call dein#add('Quramy/tsuquyomi')
 
 " Required:
 call dein#end()
@@ -203,7 +210,7 @@ set title " タイトルを表示する
 set ruler " ルーラーを表示
 set laststatus=2 " 常にステータラスラインを表示
 set showmatch " 対応する括弧をハイライト
-set number " 行番号表示
+"set number " 行番号表示
 set list " 不可視文字表示
 set listchars=tab:>\ ,extends:<
 " 全角スペースの表示
@@ -221,7 +228,7 @@ endif
 syntax enable " ハイライト on
 set background=dark
 let g:solarized_termcolors=256
-colorscheme molokai " colorscheme
+colorscheme  murphy "molokai  colorscheme
 
 
 "------------------------------------
@@ -264,6 +271,9 @@ autocmd BufNewFile,BufRead app/**/*.yml setlocal ft=ruby fenc=utf-8
 autocmd FileType ruby,haml,eruby,sass,cucumber,mason setlocal ts=2 sts=2 sw=2 et nowrap
 
 "autocmd BufWritePost *.coffee silent CoffeeMake! -cb | cwindow | redraw!
+
+autocmd FileType smarty3 setlocal ts=4 sts=0 sw=4 expandtab
+au BufRead,BufNewFile *.html set filetype=smarty3
 endif
 
 
@@ -377,7 +387,7 @@ au FileType php setlocal errorformat=%m\ in\ %f\ on\ line\ %l
 au FileType php setlocal foldmethod=manual
 
 " PHPの関数やクラスの折りたたみ(非常に重い）
-let php_folding = 1
+let php_folding = 0
 
 " 文字列の中のSQLをハイライト
 let php_sql_query = 1
@@ -419,8 +429,8 @@ endif
 let g:sparkupNextMapping = '<c-_>'
 
 "-- type ° to search the word in all files in the current dir
-nmap + :Ag <c-r>=expand("<cword>")<cr><cr>
-nnoremap ;/ :Ag
+nmap <Leader>+ :Ag <c-r>=expand("<cword>")<cr><cr>
+nnoremap <Leader>/ :Ag
 
 " Easy align interactive
 vnoremap <silent> <Enter> :EasyAlign<cr>
@@ -463,3 +473,6 @@ nmap <C-h> :Doc <c-r>=expand("<cword>")<cr><cr>
 nmap <C-e> :Eval<cr>
 
 set ambiwidth=double
+
+set rtp+=/usr/local/opt/fzf
+
