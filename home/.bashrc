@@ -184,3 +184,7 @@ PATH=$PATH:/Library/Egison/bin
 PATH=~/.composer/vendor/bin:$PATH
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/user1/.sdkman"
+[[ -s "/Users/user1/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/user1/.sdkman/bin/sdkman-init.sh"
