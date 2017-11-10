@@ -1,4 +1,4 @@
- " Note: Skip initialization for vim-tiny or vim-small.
+" Note: Skip initialization for vim-tiny or vim-small.
 if !1 | finish | endif
 
 "dein Scripts-----------------------------
@@ -39,11 +39,11 @@ endif
 "call dein#add('Lokaltog/vim-easymotion')
 " Git command wrapper
 call dein#add('tpope/vim-fugitive')
-call dein#add('L9')
+call dein#add('vimscripts/L9')
 " File open support
 " call dein#add('FuzzyFinder')
 " Read/Write remote file
-call dein#add('netrw.vim')
+call dein#add('vimscripts/netrw.vim')
 " reStructuredText plugin
 call dein#add('Rykka/riv.vim')
 
@@ -91,11 +91,11 @@ call dein#add('bling/vim-airline')
 call dein#add('venantius/vim-eastwood')
 call dein#add('scrooloose/syntastic')
 
-call dein#add('Align')
-call dein#add('SQLUtilities')
+call dein#add('vimscripts/Align')
+call dein#add('vimscripts/SQLUtilities')
 
 call dein#add('junegunn/vim-emoji')
-call dein#add('DirDiff.vim')
+call dein#add('vimscripts/DirDiff.vim')
 
 call dein#add('supermomonga/shaberu.vim')
 
@@ -228,7 +228,7 @@ endif
 syntax enable " ハイライト on
 set background=dark
 let g:solarized_termcolors=256
-colorscheme  murphy "molokai  colorscheme
+colorscheme  hybrid
 
 
 "------------------------------------
