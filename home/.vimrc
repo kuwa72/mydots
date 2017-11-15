@@ -1,137 +1,131 @@
- " Note: Skip initialization for vim-tiny or vim-small.
-  if !1 | finish | endif
-  
-if has('vim_starting')
-  if &compatible
-    set nocompatible               " Be iMproved
-  endif
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+" Note: Skip initialization for vim-tiny or vim-small.
+if !1 | finish | endif
+
+"dein Scripts-----------------------------
+if &compatible
+	set nocompatible               " Be iMproved
 endif
 
-call neobundle#begin(expand('~/.vim/bundle/'))
+" Required:
+set runtimepath^=~/.dein/repos/github.com/Shougo/dein.vim
 
-" Let NeoBundle manage NeoBundle
-NeoBundleFetch 'Shougo/neobundle.vim'
+" Required:
+call dein#begin(expand('~/.dein'))
 
-NeoBundle 'Shougo/neobundle-vim-recipes'
-NeoBundle 'Shougo/neomru.vim'
+" Let dein manage dein
+" Required:
+call dein#add('Shougo/dein.vim')
 
-" Recommended to install
-NeoBundle 'Shougo/vimproc', {
- \ 'build' : {
- \     'windows' : 'make -f make_mingw32.mak',
- \     'cygwin' : 'make -f make_cygwin.mak',
- \     'mac' : 'make -f make_mac.mak',
- \     'unix' : 'make -f make_unix.mak',
- \    },
- \ }
+call dein#add('Shougo/neomru.vim')
 
-" My Bundles here:
-" Refer to |:NeoBundle-examples|.
-"
-" Note: You don't set neobundle setting in .gvimrc!
+call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
 
-" ...
-NeoBundle 'Shougo/vimshell'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'honza/vim-snippets'
+call dein#add('Shougo/vimshell')
+call dein#add('Shougo/unite.vim')
+call dein#add('Shougo/neocomplcache')
+call dein#add('Shougo/neosnippet')
+call dein#add('Shougo/neosnippet-snippets')
+call dein#add('honza/vim-snippets')
 " HTML input support. like CSS Selector.
-NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-NeoBundle 'Shougo/vimfiler'
-NeoBundle '907th/vim-auto-save'
-NeoBundle "pangloss/vim-javascript"
+call dein#add('rstacruz/sparkup', {'rtp': 'vim/'})
+call dein#add('Shougo/vimfiler')
+call dein#add('907th/vim-auto-save')
+call dein#add('pangloss/vim-javascript')
+
 if has('gui_running')
-  NeoBundle 'fuenor/im_control.vim'
+  call dein#add('fuenor/im_control.vim')
 endif
 " <Leader>[move] fast move method.
-"NeoBundle 'Lokaltog/vim-easymotion'
+"call dein#add('Lokaltog/vim-easymotion')
 " Git command wrapper
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'L9'
+call dein#add('tpope/vim-fugitive')
+call dein#add('vim-scripts/L9')
 " File open support
-" NeoBundle 'FuzzyFinder'
+" call dein#add('FuzzyFinder')
 " Read/Write remote file
-NeoBundle 'netrw.vim'
+call dein#add('vim-scripts/netrw.vim')
 " reStructuredText plugin
-NeoBundle 'Rykka/riv.vim'
+call dein#add('Rykka/riv.vim')
 
-NeoBundle 'fuenor/JpFormat.vim'
+call dein#add('fuenor/JpFormat.vim')
 
-NeoBundle 'h1mesuke/unite-outline'
-NeoBundle 'StanAngeloff/php.vim'
-NeoBundle 'kien/ctrlp.vim'
-"NeoBundle 'snipMate'
+call dein#add('h1mesuke/unite-outline')
+call dein#add('StanAngeloff/php.vim')
+call dein#add('kien/ctrlp.vim')
+"call dein#add('snipMate')
+
+call dein#add('iakio/smarty3')
+let g:smarty_left_delimiter = '<!--{'
+let g:smarty_right_delimiter = '}-->'
 
 "colorschemes
 " solarized
-NeoBundle 'altercation/vim-colors-solarized'
+call dein#add('altercation/vim-colors-solarized')
 " mustang
-NeoBundle 'croaker/mustang-vim'
+call dein#add('croaker/mustang-vim')
 " jellybeans
-NeoBundle 'nanotech/jellybeans.vim'
+call dein#add('nanotech/jellybeans.vim')
 " molokai
-NeoBundle 'tomasr/molokai'
+call dein#add('tomasr/molokai')
 
-NeoBundle 'ujihisa/unite-colorscheme'
+call dein#add('ujihisa/unite-colorscheme')
 
-NeoBundle 'bronson/vim-trailing-whitespace'
+call dein#add('bronson/vim-trailing-whitespace')
 
-NeoBundle 'rking/ag.vim'
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'junegunn/vim-easy-align'
+call dein#add('rking/ag.vim')
+call dein#add('airblade/vim-gitgutter')
+call dein#add('junegunn/vim-easy-align')
 
 " " -- Clojure
-NeoBundle 'kien/rainbow_parentheses.vim'
-NeoBundle 'guns/vim-clojure-static'
-NeoBundle 'guns/vim-sexp'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-fireplace'
-NeoBundle 'tpope/vim-classpath'
-NeoBundle 'tpope/vim-salve'
-NeoBundle 'guns/vim-clojure-highlight'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'venantius/vim-eastwood'
-NeoBundle 'scrooloose/syntastic'
 
-NeoBundle 'Align'
-NeoBundle 'SQLUtilities'
+call dein#add('kien/rainbow_parentheses.vim')
+call dein#add('guns/vim-clojure-static')
+call dein#add('guns/vim-sexp')
+call dein#add('tpope/vim-repeat')
+call dein#add('tpope/vim-fireplace')
+call dein#add('tpope/vim-classpath')
+call dein#add('tpope/vim-salve')
+call dein#add('guns/vim-clojure-highlight')
+call dein#add('scrooloose/nerdtree')
+call dein#add('bling/vim-airline')
+call dein#add('venantius/vim-eastwood')
+call dein#add('scrooloose/syntastic')
 
-NeoBundle 'junegunn/vim-emoji'
-NeoBundle 'DirDiff.vim'
+call dein#add('vim-scripts/Align')
+call dein#add('vim-scripts/SQLUtilities')
 
-NeoBundle 'supermomonga/shaberu.vim'
+call dein#add('junegunn/vim-emoji')
+call dein#add('vim-scripts/DirDiff.vim')
 
-" Go-lang plugins
-NeoBundle 'fatih/vim-go'
+call dein#add('supermomonga/shaberu.vim')
 
-" Kotlin
-NeoBundle 'udalov/kotlin-vim'
-NeoBundle "tfnico/vim-gradle"
+call dein#add('chazy/cscope_maps')
 
-" NeoBundle 'lyuts/vim-rtags'
+call dein#add('udalov/kotlin-vim')
 
-NeoBundle 'idris-hackers/idris-vim'
+call dein#add('nanotech/jellybeans.vim')
+call dein#add('w0ng/vim-hybrid')
+call dein#add('vim-scripts/twilight')
+call dein#add('jonathanfilip/vim-lucius')
+call dein#add('jpo/vim-railscasts-theme')
+call dein#add('altercation/vim-colors-solarized')
+call dein#add('vim-scripts/Wombat')
+call dein#add('tomasr/molokai')
+call dein#add('vim-scripts/rdark')
 
-call neobundle#end()
+call dein#add('leafgarland/typescript-vim')
+call dein#add('Quramy/tsuquyomi')
 
-filetype plugin indent on     " Required!
-"
-" Brief help
-" :NeoBundleList          - list configured bundles
-" :NeoBundleInstall(!)    - install(update) bundles
-" :NeoBundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+" Required:
+call dein#end()
 
-" Installation check.
-NeoBundleCheck
+" Required:
+filetype plugin indent on
 
-if !has('vim_starting')
-  " Call on_source hook when reloading .vimrc.
-  call neobundle#call_hook('on_source')
-endif
+" If you want to install not installed plugins on startup.
+"if dein#check_install()
+"  call dein#install()
+"endif
 
 if &encoding !=# 'utf-8'
   set encoding=japan
@@ -207,6 +201,7 @@ set whichwrap=b,s,h,l,<,>,[,] " カーソルを行頭、行末で止まらない
 set showcmd " コマンドをステータス行に表示
 set showmode " 現在のモードを表示
 set modelines=0 " モードラインは無効
+set ambiwidth=double "🍣
 
 "------------------------------------
 " Show
@@ -215,7 +210,7 @@ set title " タイトルを表示する
 set ruler " ルーラーを表示
 set laststatus=2 " 常にステータラスラインを表示
 set showmatch " 対応する括弧をハイライト
-set number " 行番号表示
+"set number " 行番号表示
 set list " 不可視文字表示
 set listchars=tab:>\ ,extends:<
 " 全角スペースの表示
@@ -233,7 +228,7 @@ endif
 syntax enable " ハイライト on
 set background=dark
 let g:solarized_termcolors=256
-colorscheme molokai " colorscheme
+colorscheme  hybrid
 
 
 "------------------------------------
@@ -276,6 +271,9 @@ autocmd BufNewFile,BufRead app/**/*.yml setlocal ft=ruby fenc=utf-8
 autocmd FileType ruby,haml,eruby,sass,cucumber,mason setlocal ts=2 sts=2 sw=2 et nowrap
 
 "autocmd BufWritePost *.coffee silent CoffeeMake! -cb | cwindow | redraw!
+
+autocmd FileType smarty3 setlocal ts=4 sts=0 sw=4 expandtab
+au BufRead,BufNewFile *.html set filetype=smarty3
 endif
 
 
@@ -347,7 +345,7 @@ nnoremap <silent> ;ua :split<cr> :<C-u>Unite -start-insert file_rec/async<cr>
 " Autosave
 "------------------------------------
 
-let g:auto_save = 1
+let g:auto_save = 0
 
 "ChangeLog
 let g:changelog_username = "KUWASHIMA Yuichiro"
@@ -389,7 +387,7 @@ au FileType php setlocal errorformat=%m\ in\ %f\ on\ line\ %l
 au FileType php setlocal foldmethod=manual
 
 " PHPの関数やクラスの折りたたみ(非常に重い）
-let php_folding = 1
+let php_folding = 0
 
 " 文字列の中のSQLをハイライト
 let php_sql_query = 1
@@ -431,8 +429,8 @@ endif
 let g:sparkupNextMapping = '<c-_>'
 
 "-- type ° to search the word in all files in the current dir
-nmap + :Ag <c-r>=expand("<cword>")<cr><cr>
-nnoremap ;/ :Ag
+nmap <Leader>+ :Ag <c-r>=expand("<cword>")<cr><cr>
+nnoremap <Leader>/ :Ag
 
 " Easy align interactive
 vnoremap <silent> <Enter> :EasyAlign<cr>
@@ -464,12 +462,9 @@ let g:rbpt_colorpairs = [
     \ ]
 let g:sexp_enable_insert_mode_mappings = 0
 
-silent! if emoji#available()
-	let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
-	let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
-	let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
-	let g:gitgutter_sign_modified_removed = emoji#for('collision')
-endif
+nmap <C-h> :Doc <c-r>=expand("<cword>")<cr><cr>
+nmap <C-e> :Eval<cr>
+
 set ambiwidth=double
 
 "Go-lang settings
@@ -479,3 +474,4 @@ let g:syntastic_go_checkers = ['go', 'golint']
 
 "riv.vim settings
 let g:riv_disable_folding = 1 " Disable folding
+set rtp+=/usr/local/opt/fzf

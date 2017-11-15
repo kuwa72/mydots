@@ -19,7 +19,8 @@
 	untracked = cyan
 
 [core]
-	excludesfile = ~/.gitignore
+	excludesfile = /Users/user1/.gitignore
+	editor = vim
 [alias]
 	logg = log --stat --pretty=format:'%Cblue%h %Cgreen%ar %Cred%an %Creset%s %Cred%d %Creset'
 	loggr = log --graph --date-order --pretty=format:'%Cblue%h %Cgreen%ci %Cred%an %Cblue%m %Creset%s %Cred%d%Creset'
@@ -78,8 +79,8 @@
 	gr = grep
 	gn = grep -n
 [user]
-	email = ykuwashima@gmail.com
-	name = KUWASHIMA Yuichiro
+	email = 
+	name = 
 [github]
 	user = kuwa72
 [grep]
@@ -88,3 +89,11 @@
 	sslVerify = false
 [ghq]
 	root = ~/.go/src
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/user1/.stCommitMsg

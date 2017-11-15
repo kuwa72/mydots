@@ -1,3 +1,5 @@
+#! /usr/bin/bash
+
 if [ $(uname -s) = 'Darwin' ]; then
   alias ls="ls -G"
 else
@@ -53,3 +55,14 @@ function gstv() {
     vim `git status -s -b | grep -v "^#" | awk '{print$1="";print}' | grep -v "^$" | awk "NR==$1"`
   fi
 }
+
+[ -f ~/.aliases_local ] && source ~/.aliases_local
+
+alias たのしー！=grep
+alias たーのしー！=find
+alias すごーい！=sort
+alias すっごーい！=uniq
+alias うわー！=awk
+alias わーい！=sed
+alias なにこれなにこれ！=xargs
+alias おもしろーい！=seq
