@@ -105,6 +105,17 @@ NeoBundle 'DirDiff.vim'
 
 NeoBundle 'supermomonga/shaberu.vim'
 
+" Go-lang plugins
+NeoBundle 'fatih/vim-go'
+
+" Kotlin
+NeoBundle 'udalov/kotlin-vim'
+NeoBundle "tfnico/vim-gradle"
+
+" NeoBundle 'lyuts/vim-rtags'
+
+NeoBundle 'idris-hackers/idris-vim'
+
 call neobundle#end()
 
 filetype plugin indent on     " Required!
@@ -460,3 +471,11 @@ silent! if emoji#available()
 	let g:gitgutter_sign_modified_removed = emoji#for('collision')
 endif
 set ambiwidth=double
+
+"Go-lang settings
+let g:syntastic_mode_map = { 'mode': 'passive',
+    \ 'active_filetypes': ['go'] }
+let g:syntastic_go_checkers = ['go', 'golint']
+
+"riv.vim settings
+let g:riv_disable_folding = 1 " Disable folding
