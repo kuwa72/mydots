@@ -12,14 +12,8 @@ package-install github zsh-users/zsh-completions
 # パッケージを読み込む。
 source $(package-directory zsh-users/zsh-history-substring-search)/zsh-history-substring-search.zsh
 source $(package-directory zsh-users/zsh-syntax-highlighting)/zsh-syntax-highlighting.zsh
-source $(package-directory tarruda/zsh-autosuggestions)/autosuggestions.zsh
+source $(package-directory tarruda/zsh-autosuggestions)/zsh-autosuggestions.zsh
 fpath=($(package-directory zsh-users/zsh-completions)/src $fpath)
-
-# autosuggestionsを初期化する。
-zle-line-init() {
-  zle autosuggest-start
-}
-zle -N zle-line-init
 
 # bind P and N for EMACS mode
 bindkey -M emacs '^P' history-substring-search-up

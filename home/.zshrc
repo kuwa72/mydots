@@ -100,3 +100,12 @@ elif type compctl &>/dev/null; then
 fi
 ###-end-npm-completion-###
 . ~/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+#direnv settings
+export EDITOR=nvim
+eval "$(direnv hook zsh)"
+. /Users/yuichiro/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+where pyenv && eval "$(pyenv init -)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

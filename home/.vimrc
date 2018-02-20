@@ -473,6 +473,13 @@ nmap <C-e> :Eval<cr>
 
 set ambiwidth=double
 
+"Go-lang settings
+let g:syntastic_mode_map = { 'mode': 'passive',
+    \ 'active_filetypes': ['go'] }
+let g:syntastic_go_checkers = ['go', 'golint']
+
+"riv.vim settings
+let g:riv_disable_folding = 1 " Disable folding
 set rtp+=/usr/local/opt/fzf
 
 if !has('gui_running')

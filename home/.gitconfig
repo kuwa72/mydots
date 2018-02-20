@@ -87,6 +87,8 @@
   lineNumber = true
 [http]
 	sslVerify = false
+[ghq]
+	root = ~/.go/src
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
