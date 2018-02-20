@@ -39,11 +39,11 @@ endif
 "call dein#add('Lokaltog/vim-easymotion')
 " Git command wrapper
 call dein#add('tpope/vim-fugitive')
-call dein#add('vimscripts/L9')
+call dein#add('vim-scripts/L9')
 " File open support
 " call dein#add('FuzzyFinder')
 " Read/Write remote file
-call dein#add('vimscripts/netrw.vim')
+call dein#add('vim-scripts/netrw.vim')
 " reStructuredText plugin
 call dein#add('Rykka/riv.vim')
 
@@ -91,11 +91,11 @@ call dein#add('bling/vim-airline')
 call dein#add('venantius/vim-eastwood')
 call dein#add('scrooloose/syntastic')
 
-call dein#add('vimscripts/Align')
-call dein#add('vimscripts/SQLUtilities')
+call dein#add('vim-scripts/Align')
+call dein#add('vim-scripts/SQLUtilities')
 
 call dein#add('junegunn/vim-emoji')
-call dein#add('vimscripts/DirDiff.vim')
+call dein#add('vim-scripts/DirDiff.vim')
 
 call dein#add('supermomonga/shaberu.vim')
 
@@ -115,6 +115,8 @@ call dein#add('vim-scripts/rdark')
 
 call dein#add('leafgarland/typescript-vim')
 call dein#add('Quramy/tsuquyomi')
+
+call dein#add('eagletmt/neco-ghc')
 
 " Required:
 call dein#end()
@@ -274,6 +276,10 @@ autocmd FileType ruby,haml,eruby,sass,cucumber,mason setlocal ts=2 sts=2 sw=2 et
 
 autocmd FileType smarty3 setlocal ts=4 sts=0 sw=4 expandtab
 au BufRead,BufNewFile *.html set filetype=smarty3
+
+let g:haskellmode_completion_ghc = 0
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
 endif
 
 
@@ -468,3 +474,9 @@ nmap <C-e> :Eval<cr>
 set ambiwidth=double
 
 set rtp+=/usr/local/opt/fzf
+
+if !has('gui_running')
+set ttyfast
+set lazyredraw
+set nocursorline
+endif
