@@ -66,3 +66,6 @@ alias うわー！=awk
 alias わーい！=sed
 alias なにこれなにこれ！=xargs
 alias おもしろーい！=seq
+
+alias g='cd $(ghq root)/$(ghq list | peco)'
+alias gh='hub browse $(ghq list | peco | cut -d "/" -f 2,3)'

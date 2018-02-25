@@ -115,6 +115,7 @@ call dein#add('leafgarland/typescript-vim')
 call dein#add('Quramy/tsuquyomi')
 
 call dein#add('fatih/vim-go')
+call dein#add('eagletmt/neco-ghc')
 
 " Required:
 call dein#end()
@@ -275,6 +276,10 @@ autocmd FileType ruby,haml,eruby,sass,cucumber,mason setlocal ts=2 sts=2 sw=2 et
 
 autocmd FileType smarty3 setlocal ts=4 sts=0 sw=4 expandtab
 au BufRead,BufNewFile *.html set filetype=smarty3
+
+let g:haskellmode_completion_ghc = 0
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
 endif
 
 
@@ -503,3 +508,8 @@ cnoremap <C-p> <Up>
 cnoremap <M-b> <S-Left>
 " 次の単語へ移動
 cnoremap <M-f> <S-Right>
+if !has('gui_running')
+set ttyfast
+set lazyredraw
+set nocursorline
+endif
