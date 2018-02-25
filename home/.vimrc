@@ -54,9 +54,9 @@ call dein#add('StanAngeloff/php.vim')
 call dein#add('kien/ctrlp.vim')
 "call dein#add('snipMate')
 
-call dein#add('iakio/smarty3')
-let g:smarty_left_delimiter = '<!--{'
-let g:smarty_right_delimiter = '}-->'
+"call dein#add('iakio/smarty3')
+"let g:smarty_left_delimiter = '<!--{'
+"let g:smarty_right_delimiter = '}-->'
 
 "colorschemes
 " solarized
@@ -67,6 +67,12 @@ call dein#add('croaker/mustang-vim')
 call dein#add('nanotech/jellybeans.vim')
 " molokai
 call dein#add('tomasr/molokai')
+call dein#add('w0ng/vim-hybrid')
+call dein#add('vim-scripts/twilight')
+call dein#add('jonathanfilip/vim-lucius')
+call dein#add('jpo/vim-railscasts-theme')
+call dein#add('vim-scripts/Wombat')
+call dein#add('vim-scripts/rdark')
 
 call dein#add('ujihisa/unite-colorscheme')
 
@@ -78,43 +84,37 @@ call dein#add('junegunn/vim-easy-align')
 
 " " -- Clojure
 
-call dein#add('kien/rainbow_parentheses.vim')
-call dein#add('guns/vim-clojure-static')
-call dein#add('guns/vim-sexp')
-call dein#add('tpope/vim-repeat')
-call dein#add('tpope/vim-fireplace')
-call dein#add('tpope/vim-classpath')
-call dein#add('tpope/vim-salve')
-call dein#add('guns/vim-clojure-highlight')
+"call dein#add('kien/rainbow_parentheses.vim')
+"call dein#add('guns/vim-clojure-static')
+"call dein#add('guns/vim-sexp')
+"call dein#add('tpope/vim-repeat')
+"call dein#add('tpope/vim-fireplace')
+"call dein#add('tpope/vim-classpath')
+"call dein#add('tpope/vim-salve')
+"call dein#add('guns/vim-clojure-highlight')
+
 call dein#add('scrooloose/nerdtree')
 call dein#add('bling/vim-airline')
-call dein#add('venantius/vim-eastwood')
+
+"call dein#add('venantius/vim-eastwood')
 call dein#add('scrooloose/syntastic')
 
 call dein#add('vim-scripts/Align')
-call dein#add('vim-scripts/SQLUtilities')
+"call dein#add('vim-scripts/SQLUtilities')
 
 call dein#add('junegunn/vim-emoji')
 call dein#add('vim-scripts/DirDiff.vim')
 
-call dein#add('supermomonga/shaberu.vim')
+"call dein#add('supermomonga/shaberu.vim')
 
 call dein#add('chazy/cscope_maps')
 
 call dein#add('udalov/kotlin-vim')
 
-call dein#add('nanotech/jellybeans.vim')
-call dein#add('w0ng/vim-hybrid')
-call dein#add('vim-scripts/twilight')
-call dein#add('jonathanfilip/vim-lucius')
-call dein#add('jpo/vim-railscasts-theme')
-call dein#add('altercation/vim-colors-solarized')
-call dein#add('vim-scripts/Wombat')
-call dein#add('tomasr/molokai')
-call dein#add('vim-scripts/rdark')
-
 call dein#add('leafgarland/typescript-vim')
 call dein#add('Quramy/tsuquyomi')
+
+call dein#add('fatih/vim-go')
 
 " Required:
 call dein#end()
@@ -188,7 +188,8 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 " Basic
 "------------------------------------
 source $VIMRUNTIME/vimrc_example.vim
-let mapleader="\<Space>" " <Leader>キー
+"let mapleader="\<Space>" " <Leader>キー
+let mapleader="," " <Leader>キー
 set scrolloff=5 " スクロール時の余白確保
 set textwidth=0 " 自動で折り返しをしない
 set autoread " 自動読み直し
@@ -475,3 +476,30 @@ let g:syntastic_go_checkers = ['go', 'golint']
 "riv.vim settings
 let g:riv_disable_folding = 1 " Disable folding
 set rtp+=/usr/local/opt/fzf
+
+"Golang
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+autocmd FileType go nmap <leader>t  <Plug>(go-test)
+autocmd FileType go nmap <leader>b  <Plug>(go-build)
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
+autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+autocmd FileType go nmap <Leader>i <Plug>(go-info)
+
+"コマンドモードをEmacs風に
+cnoremap <C-a> <Home>
+" 一文字戻る
+cnoremap <C-b> <Left>
+" カーソルの下の文字を削除
+cnoremap <C-d> <Del>
+" 行末へ移動
+cnoremap <C-e> <End>
+" 一文字進む
+cnoremap <C-f> <Right>
+" コマンドライン履歴を一つ進む
+cnoremap <C-n> <Down>
+" コマンドライン履歴を一つ戻る
+cnoremap <C-p> <Up>
+" 前の単語へ移動
+cnoremap <M-b> <S-Left>
+" 次の単語へ移動
+cnoremap <M-f> <S-Right>
